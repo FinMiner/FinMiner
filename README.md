@@ -1,0 +1,2 @@
+# FinMiner
+Cryptocurrency miner.
