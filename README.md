@@ -1,9 +1,9 @@
 # FinMiner by FINOM
-# version: 2.0
+# version: 2.1
 **FinMiner** is a program product developed by the Finom company to create structural cryptocurrency
 units on the framework of the Ethash and CryptoNight algorithms. This present version of **FinMiner**
 was made to work with every cryptocurrency based on those algorithms: Ethereum, Ethereum Classic,
-Monero, Electroneum, etc. This version of FinMiner was developed to run on Windows OS with
+Monero, Electroneum, etc. This version of FinMiner was developed to run on Windows and Linux OS with
 Nvidia graphics cards.
 
 Testing on **FinMiner** demonstrated high effectiveness working with Ethereum, Ethereum Classic,
@@ -61,7 +61,7 @@ rig and provide it to the pool.
 Optional parameter, consisting of the user’s e-mail address. It is provided to the pool where the rig
 will be operating. The pool can use it when sending out service notifications.
 ### pool1, pool2, ...
-Optional parameter, consisting of mining pools in order of priority. Definitions must be given in the
+Optional parameter, consisting of mining pools. Definitions must be given in the
 format url:port (for example: “pool1=eth-eu1.nanopool.org:9999”). The parameters should be defined
 in ascending, sequential order, from pool1 to poolN (for example: pool1, pool2, pool3).
 ## Configuration File
