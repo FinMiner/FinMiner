@@ -1,5 +1,5 @@
 Support email: support@miner.finom.io  
-Community chat in telegram: https://t.me/finminer
+Community chat in telegram (developers read it too): https://t.me/finminer
 
 # FinMiner by FINOM
 # version: 2.2
