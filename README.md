@@ -1,3 +1,6 @@
+Support email: support@miner.finom.io  
+Community chat in telegram: https://t.me/finminer
+
 # FinMiner by FINOM
 # version: 2.2
 **FinMiner** is a program product developed by the Finom company to create structural cryptocurrency units on the framework of the Ethash algorithm. The present version of **FinMiner** was made to work with every cryptocurrency based on this algorithm, including Ethereum, Ethereum Classic and many others. This version of **FinMiner** runs on Windows or Linux with AMD or Nvidia graphics cards.
