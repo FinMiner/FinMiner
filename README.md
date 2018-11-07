@@ -2,16 +2,22 @@ Support email: support@miner.finom.io
 Community chat in telegram (developers read it too): https://t.me/finminer
 
 # FinMiner by FINOM
-# version: 2.2
-**FinMiner** is a program product developed by the Finom company to create structural cryptocurrency units on the framework of the Ethash algorithm. The present version of **FinMiner** was made to work with every cryptocurrency based on this algorithm, including Ethereum, Ethereum Classic and many others. This version of **FinMiner** runs on Windows or Linux with AMD or Nvidia graphics cards.
+# version: 2.3
+**FinMiner** is a program product developed by the Finom company to create structural cryptocurrency units on the framework of the Ethash and CryptoNight algorithms. The present version of **FinMiner** was made to work with every cryptocurrency based on this algorithm, including Ethereum, Ethereum Classic, Monero and many others. This version of **FinMiner** runs on Windows or Linux with AMD or Nvidia graphics cards.
 
 In order to begin mining Ethereum with FinMiner, ***it's enough to simply input your wallet*** in the configuration file.
 
-Testing on **FinMiner** demonstrated high performance working with Ethereum and Ethereum Classic. As a result of the research carried out, it was found that **FinMiner** performs on par with, and sometimes better than, competing program products. Independently of this, **FinMiner** stands out with its high stability and simple setup.
+Testing on **FinMiner** demonstrated high performance working with Ethereum, Ethereum Classic, Monero and other currencies. As a result of the research carried out, it was found that **FinMiner** performs on par with, and sometimes better than, competing program products. Independently of this, **FinMiner** stands out with its high stability and simple setup.
 ## Payment
 Payment for the use of **FinMiner** takes the form of a commission from mining. The commission is 1% of total mining time: every hour at random **FinMiner** switches the mining to its wallets for 36 seconds.
 ## Setup
-At launch **FinMiner** reads the _config.ini_ setup file from the program's current directory. When launching with the _-d_ command line option (e.g. `finminer.exe -d`) the miner displays a list of the devices it detects, including their PCI addresses and their amount of memory. In order to use this function on Windows the program must be launched from the command prompt (cmd).
+At launch **FinMiner** reads the _config.ini_ setup file from the program's current directory. In order to
+assign a specific name to the config file, it should be written as the first argument in the command
+line. For example:
+```
+finminer.exe config_etc.ini
+```
+When launching with the _-d_ command line option (e.g. `finminer.exe -d`) the miner displays a list of the devices it detects, including their PCI addresses and their amount of memory. In order to use this function on Windows the program must be launched from the command prompt (cmd).
 
 **FinMiner** does not require any pools to be specified in the config file. If a pool (or list of pools) is not specified, **FinMiner** will automatically use the pools on [nanopool.org](https://nanopool.org/) corresponding to the chosen cryptocurrency.
 
@@ -32,16 +38,23 @@ Another function on **FinMiner** that improves the miner's automatic functioning
 More detailed information on using these functions can be found in the _Parameters_ section of this file.
 
 ## Parameters
-The settings for **FinMiner** can be found in the configuration file _config.ini_ in the .ini format as _parameter=value_ logic pairs. This file permits the presence of empty lines and comments. Comment lines should begin with a ";" (semicolon). The parameters and values are not case-sensitive, which means it makes no difference to the program whether you type _ETH_, _eth_ or _Eth_, or whether you type _wallet_ or _Wallet_. If an incorrect value is set for a parameter, the default value will be used instead (note that this rule does not apply to the _wallet_ parameter).
+The settings for **FinMiner** can be found in the configuration file with the *.ini extension (_config.ini_ by default) in the .ini format as _parameter=value_ logic pairs. This file permits the presence of empty lines and comments. Comment lines should begin with a ";" (semicolon). The parameters and values are not case-sensitive, which means it makes no difference to the program whether you type _ETH_, _eth_ or _Eth_, or whether you type _wallet_ or _Wallet_. If an incorrect value is set for a parameter, the default value will be used instead (note that this rule does not apply to the _wallet_ parameter).
 
 What follows is a list of the parameters that can be set on **FinMiner**.
 ### wallet
 Mandatory parameter.
 This is the user's wallet, where funds will be deposited.
+### paymentId
+Optional parameter, can be defined for wallets created on an exchange where the user has a personal
+payment number in addition to their wallet.
+### algorithm
+Optional parameter, which can be defined as “Ethash”, “CryptoNightv8”, “CryptoNightv7” or “CryptoNight”. If this parameter is not
+specified, **FinMiner** will determine the algorithm on the basis of the cryptocurrency used or the
+format of the wallet specified.
 ### coin
 Optional parameter.
 This chooses the default coin for the pool. The default pool is [nanopool.org](https://nanopool.org/).
-The coin parameter accepts one of two values: ETH (for Ethereum) and ETC (for Ethereum Classic). When a coin is specified  **FinMiner** automatically determines the pool necessary for it to function if none have been provided in a separate parameter. If a coin is not specified, **FinMiner** will use the default coin Ethereum. Moreover, if [nanopool.org](https://nanopool.org/) is specified in the configuration file for Ethereum or Ethereum Classic, **FinMiner** can determine the coin from the pool's settings.
+The coin parameter accepts one of three values: ETH (or Ethereum), ETC (or Ethereum Classic) and XMR (or Monero). When a coin is specified and equals one of the values mentioned above, **FinMiner** automatically determines the pool necessary for it to function if none have been provided in a separate parameter. If a coin is specified but **FinMiner** cannot recognize it, then the name of the coin is used only for logging. If a coin is not specified, **FinMiner** will use the default coin for the corresponding algorithm (Ethereum or Monero). Moreover, if [nanopool.org](https://nanopool.org/) is specified in the configuration file for Ethereum, Ethereum Classic or Monero, **FinMiner** will determine the coin from the pool's settings.
 
 *Important*: when using **FinMiner** to mine Ethereum Classic on the default pool, it is necessary to define the coin (coin=ETC). In that case the pools will be determined automatically.
 
@@ -96,9 +109,10 @@ The script must be written by the user.
 Optional parameter.
 This parameter accepts the values _true_ or _false_ (the default is _false_). If this parameter is set to _true_ then no log files will be recorded onto the hard drive.
 
-### logDir
+### logPath
 Optional parameter.
-This is the name of the folder in which log files will be created. The default destination is _logs/_.
+This parameter can either be used to set the name of the folder in which log files will be created (e.g. `logPath=logfolder/`), or to specify a path to single file, which will be used for all logs (e.g. `logPath=logs/log.txt`, `logPath=/var/log/finminer/log.txt`, `logPath=C:\logs\log.txt`). Both relative and absolute paths work.
+Default value for this parameter is _logs/_.
 
 ### mport
 Optional parameter.
@@ -178,4 +192,28 @@ Example of a minimum file for Ethereum Classic:
 ```
 wallet=0xffffffffffffffffffffffffffffffffffffffff
 coin=Etc
+```
+Example of a complete file for Monero:
+```
+wallet = fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+paymentId = ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+algorithm = CryptoNightv8
+rigName = rig1
+email = someemail@org
+pool1 = xmr-eu1.nanopool.org:14433
+pool2 = xmr-eu2.nanopool.org:14433
+pool3 = xmr-us-east1.nanopool.org:14433
+pool4 = xmr-us-west1.nanopool.org:14433
+pool5 = xmr-asia1.nanopool.org:14433
+```
+Example of an equivalent file for Monero:
+```
+wallet = fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+paymentId = ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+rigName = rig1
+email = someemail@org
+```
+Example of a minimum file for Monero:
+```
+wallet = fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 ```
