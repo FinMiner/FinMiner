@@ -1,13 +1,14 @@
 Support email: support@miner.finom.io  
 Community chat in telegram (developers read it too): https://t.me/finminer
 
+
 # FinMiner by FINOM
-# version: 2.3
-**FinMiner** is a program product developed by the Finom company to create structural cryptocurrency units on the framework of the Ethash and CryptoNight algorithms. The present version of **FinMiner** was made to work with every cryptocurrency based on this algorithm, including Ethereum, Ethereum Classic, Monero and many others. This version of **FinMiner** runs on Windows or Linux with AMD or Nvidia graphics cards.
+# version: 2.4
+**FinMiner** is a program product developed by the Finom company to create structural cryptocurrency units on the framework of the Ethash, CryptoNight and RandomHash algorithms. The present version of **FinMiner** was made to work with every cryptocurrency based on these algorithms, including Ethereum, Ethereum Classic, Monero, PascalCoin and many others. This version of **FinMiner** runs on Windows or Linux with AMD or Nvidia graphics cards (for Ethash and CryptoNight algorithms). The RandomHash algorithm is supported only on CPU.
 
 In order to begin mining Ethereum with FinMiner, ***it's enough to simply input your wallet*** in the configuration file.
 
-Testing on **FinMiner** demonstrated high performance working with Ethereum, Ethereum Classic, Monero and other currencies. As a result of the research carried out, it was found that **FinMiner** performs on par with, and sometimes better than, competing program products. Independently of this, **FinMiner** stands out with its high stability and simple setup.
+Testing on **FinMiner** demonstrated high performance working with Ethereum, Ethereum Classic, Monero, PascalCoin and other currencies. As a result of the research carried out, it was found that **FinMiner** performs on par with, and sometimes better than, competing program products. Independently of this, **FinMiner** stands out with its high stability and simple setup.
 ## Payment
 Payment for the use of **FinMiner** takes the form of a commission from mining. The commission is 1% of total mining time: every hour at random **FinMiner** switches the mining to its wallets for 36 seconds.
 ## Setup
@@ -126,6 +127,14 @@ Default value: -3333 (This means that the miner blocks management through API an
 Optional parameter.
 Your password for monitoring with EthMan and other utilities that support the same network API.
 
+### cpuThreads
+Optional parameter for CPU mining.
+Specifies the number of concurrent CPU threads to use for mining. All threads are used by default.
+
+### protocol
+Optional parameter.
+Can be used to set the pool protocol to _stratum_. If not specified, **FinMiner** will try to detect the pool protocol automatically.
+
 ## Configuration File
 The minimum configuration file for Ethereum may contain only a wallet:
 ```
@@ -216,4 +225,28 @@ email = someemail@org
 Example of a minimum file for Monero:
 ```
 wallet = fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+```
+Example of a complete file for PascalCoin:
+```
+wallet = 123456-77
+paymentId = ffffffffffffffff
+algorithm = RandomHash
+rigName = rig1
+email = someemail@org
+pool1 = pasc-eu1.nanopool.org:15555
+pool2 = pasc-eu2.nanopool.org:15555
+pool3 = pasc-us-east1.nanopool.org:15555
+pool4 = pasc-us-west1.nanopool.org:15555
+pool5 = pasc-asia1.nanopool.org:15555
+```
+Example of an equivalent file for PascalCoin:
+```
+wallet = 123456-77
+paymentId = ffffffffffffffff
+rigName = rig1
+email = someemail@org
+```
+Example of a minimum file for PascalCoin:
+```
+wallet = 123456-77
 ```
