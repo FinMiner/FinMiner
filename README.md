@@ -49,7 +49,7 @@ This is the user's wallet, where funds will be deposited.
 Optional parameter, can be defined for wallets created on an exchange where the user has a personal
 payment number in addition to their wallet.
 ### algorithm
-Optional parameter, which can be defined as “Ethash”, “CryptoNightv8”, “CryptoNightv7” or “CryptoNight”. If this parameter is not
+Optional parameter, which can be defined as “Ethash”, “CryptoNightv8”, “CryptoNightv7”, “CryptoNight” or “RandomHash”. If this parameter is not
 specified, **FinMiner** will determine the algorithm on the basis of the cryptocurrency used or the
 format of the wallet specified.
 ### coin
@@ -249,4 +249,11 @@ email = someemail@org
 Example of a minimum file for PascalCoin:
 ```
 wallet = 123456-77
+```
+
+
+To mine PascalCoin in a solo mode please provide ip and port of Pascal Coin Wallet software. The wallet number filled in config does not matter in such case. Block payload would be "Miner Name" set up in Pascal Coin Wallet followed by FinMiner version. Example of a file for solo mining PascalCoin using local wallet software:
+```
+wallet = 0
+pool1 = 127.0.0.1:4009
 ```
